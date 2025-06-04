@@ -6,12 +6,11 @@ from torchvision import transforms
 from torchvision.models.segmentation import fcn_resnet50
 
 # ====== SETTINGS ======
-MODEL_PATH = "checkpoints/checkpoint_epoch_1.pth"
+MODEL_PATH = "checkpoints/best_model.pth"
 NUM_CLASSES = 13
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-CLASS_NAMES = [
-    "dog", "cat", "person", "chair", "mouse", "remote",
-    "keyboard", "cell phone", "cup", "fork", "knife", "spoon"
+CLASS_NAMES = [ #ORDERED the same way the IDs are ordered in MS COCO
+    "person", "dog", "cat", "cup", "fork", "knife", "spoon", "chair", "mouse", "remote", "keyboard", "cell phone"
 ]
 
 # Segmentation Mask colors for visualization
@@ -30,7 +29,7 @@ CLASS_COLORS = [
     (220, 20, 60),    # spoon
 ]
 
-INFERENCE_FRACTION = 0.01  # Only run on 25% of frames
+INFERENCE_FRACTION = 0.1  # Only run on 25% of frames
 # =======================
 
 # Define transform to preprocess frames in webcam the same way as training
