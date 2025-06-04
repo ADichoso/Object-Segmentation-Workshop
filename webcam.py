@@ -73,6 +73,7 @@ with torch.no_grad():
         orig_h, orig_w = frame.shape[:2]
         frame_counter += 1
 
+        # Run inference every 1/INFERENCE_FRACTION of frames
         run_inference = (frame_counter % int(1 / INFERENCE_FRACTION) == 0)
         if run_inference:
             input_tensor = transform(frame).unsqueeze(0).to(DEVICE)
